@@ -1,5 +1,7 @@
 # Agent-to-Agent (A2A) Security Pipeline with MCP Integration
 
+Welcome! This project is built and maintained by **[Hamza Farooq](https://github.com/hamzafarooq)** (Founder @ Traversaal.ai | Ex-Google | Prof UCLA & UMN) as part of the [Agent Engineering Bootcamp](https://maven.com/boring-bot/advanced-llm) curriculum.
+
 This project implements a security-focused data processing pipeline using the Agent-to-Agent (A2A) protocol combined with Model Context Protocol (MCP) integration. The system provides secure database queries through a multi-agent architecture.
 
 ## System Architecture
