@@ -2,6 +2,10 @@
 
 Welcome! This project is built and maintained by **[Hamza Farooq](https://github.com/hamzafarooq)** (Founder @ Traversaal.ai | Ex-Google | Prof UCLA & UMN) as part of the [Agent Engineering Bootcamp](https://maven.com/boring-bot/advanced-llm) curriculum.
 
+[![Agent Engineering Bootcamp](images/Screenshot%202026-03-31%20at%2010.42.48.png)](https://maven.com/boring-bot/advanced-llm)
+
+👉 **[Enroll in the Agent Engineering Bootcamp on Maven](https://maven.com/boring-bot/advanced-llm)**
+
 This project implements a security-focused data processing pipeline using the Agent-to-Agent (A2A) protocol combined with Model Context Protocol (MCP) integration. The system provides secure database queries through a multi-agent architecture.
 
 ## System Architecture
