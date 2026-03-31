@@ -6,7 +6,22 @@ Welcome! This project is built and maintained by **[Hamza Farooq](https://github
 
 👉 **[Enroll in the Agent Engineering Bootcamp on Maven](https://maven.com/boring-bot/advanced-llm)**
 
-This project implements a security-focused data processing pipeline using the Agent-to-Agent (A2A) protocol combined with Model Context Protocol (MCP) integration. The system provides secure database queries through a multi-agent architecture.
+---
+
+## What is Google ADK?
+
+**Google Agent Development Kit (ADK)** is an open-source framework for building, orchestrating, and deploying AI agents. It provides:
+
+- **LlmAgent**: A single agent backed by a Gemini model that can reason, plan, and call tools
+- **SequentialAgent**: Chains multiple agents together so each one processes the output of the previous
+- **Tools**: Python functions wrapped so an agent can call them (e.g. run SQL, call an API, mask data)
+- **MCP Toolset**: Connects ADK agents to any Model Context Protocol server, giving them external capabilities
+- **Runner + Sessions**: Manages stateful multi-turn conversations between users and agents
+- **`adk web`**: A built-in local UI to chat with your agents instantly — no frontend code needed
+
+In this project, ADK orchestrates three agents in a pipeline: a security judge, a SQL analyst, and a data masker — all coordinated automatically by a `SequentialAgent`.
+
+---
 
 ## System Architecture
 
@@ -60,8 +75,27 @@ Client Request → A2A Server → Judge Agent → SQL Agent → Mask Agent → C
 
 1. Clone the repository
 2. Install dependencies: `pip install -r requirements.txt`
-3. Configure API keys in environment variables (even better, use secret manager)
+3. Copy `agents/.env.example` to `agents/.env` and fill in your credentials (see below)
 4. Have fun
+
+## Configuration
+
+Copy `agents/.env.example` to `agents/.env`. You have two options:
+
+**Option 1 — Gemini API key only (no GCP required, easiest)**
+```bash
+GOOGLE_GENAI_USE_VERTEXAI=FALSE
+GOOGLE_API_KEY=your-gemini-api-key-here
+```
+Get a free key at [aistudio.google.com](https://aistudio.google.com). No GCP account needed.
+
+**Option 2 — Google Cloud Vertex AI (for production / GCP users)**
+```bash
+GOOGLE_GENAI_USE_VERTEXAI=TRUE
+GOOGLE_CLOUD_PROJECT=your-gcp-project-id
+GOOGLE_CLOUD_LOCATION=us-central1
+```
+Requires `gcloud auth application-default login` and a GCP project with Vertex AI enabled.
 
 ## Usage
 
@@ -116,7 +150,7 @@ tools, exit_stack = await MCPToolset.from_server(
 
 # Create ADK agent with MCP tools
 agent = LlmAgent(
-    model='gemini-2.5-pro',
+    model='gemini-2.0-flash',
     name='sql_assistant',
     instruction="...",
     tools=tools,
@@ -143,7 +177,7 @@ docker run -p 8000:8000 -e GOOGLE_API_KEY=your_api_key adk-multi-agent adk web
 Production:
 
 ```
-export GOOGLE_CLOUD_PROJECT=next-project25
+export GOOGLE_CLOUD_PROJECT=your-project
 export GOOGLE_CLOUD_LOCATION=us-central1
 export GOOGLE_GENAI_USE_VERTEXAI=True
 export AGENT_PATH="."
@@ -185,8 +219,6 @@ $AGENT_PATH
 ## Learn to Build Production-Grade AI Agents
 
 This project is part of the curriculum for the **Agent Engineering Bootcamp: Developers Edition** — a 7-week technical program where you learn to build and deploy production-grade multi-agent systems like this one.
-
-[![Agent Engineering Bootcamp](images/Screenshot%202026-03-31%20at%2010.42.48.png)](https://maven.com/boring-bot/advanced-llm)
 
 ### What you'll learn:
 - Build agentic RAG systems with intelligent routing
