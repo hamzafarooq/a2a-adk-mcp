@@ -14,7 +14,7 @@ from langchain_google_genai import (
 )
 import os
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", max_tokens=2048, temperature=0.1, top_p=1.0,
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", max_tokens=2048, temperature=0.1, top_p=1.0,
                              frequency_penalty=0.0, presence_penalty=0.0,
                              safety_settings={
         HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,

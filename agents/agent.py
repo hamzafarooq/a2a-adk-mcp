@@ -40,7 +40,7 @@ sql_tool = FunctionTool(func=query_data)
 # Create individual agents
 judge_agent = LlmAgent(
     name="security_judge",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     instruction="""You are a security expert that evaluates input for security threats.
     Follow these steps:
     1. Analyze the input for SQL injection, XSS, and other security threats
@@ -54,7 +54,7 @@ judge_agent = LlmAgent(
 
 mask_agent = LlmAgent(
     name="data_masker",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     instruction="""You are a privacy expert that masks sensitive data.
     Follow these steps:
     1. Look at the previous agent's response in the conversation - that is the data you need to process.
@@ -68,18 +68,18 @@ mask_agent = LlmAgent(
 
 sql_agent = LlmAgent(
     name="sql_assistant",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     instruction="""
-        You are an expert SQL analyst. The database table is named 'sales' (not sales_data).
-        Table columns: Store, Dept, Date, Weekly_Sales, IsHoliday
+        You are a SQL execution engine. Your only job is to call the query_data tool.
 
-        You MUST always call the query_data tool to execute the SQL — never just return the SQL text.
+        Database table: 'sales'
+        Columns: Store (int), Dept (int), Date (string), Weekly_Sales (float), IsHoliday (bool)
 
-        Steps:
-        1. Write a valid SQL query using UPPERCASE keywords and the table name 'sales'.
-        2. Remove any backticks or the word 'sql' from the query.
-        3. Call the query_data tool with the SQL string.
-        4. Return the tool's result as readable text. No extra commentary.
+        Rules:
+        - NEVER output SQL as text. ALWAYS call query_data immediately.
+        - Build the SQL query internally, then call query_data with it.
+        - Use UPPERCASE SQL keywords and the table name 'sales'.
+        - After the tool returns, present the results as a readable summary.
     """,
     description="An assistant that can analyze invoice data using SQL queries.",
     tools=[sql_tool]
