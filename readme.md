@@ -173,3 +173,21 @@ $AGENT_PATH
 
 
 *This project demonstrates integration between A2A protocol and MCP server capabilities, creating a secure and flexible agent architecture for data processing.*
+
+---
+
+## Learn to Build Production-Grade AI Agents
+
+This project is part of the curriculum for the **Agent Engineering Bootcamp: Developers Edition** — a 7-week technical program where you learn to build and deploy production-grade multi-agent systems like this one.
+
+[![Agent Engineering Bootcamp](images/Screenshot%202026-03-31%20at%2010.42.48.png)](https://maven.com/boring-bot/advanced-llm)
+
+### What you'll learn:
+- Build agentic RAG systems with intelligent routing
+- Deploy and optimize LLMs at scale with quantization and semantic caching
+- Implement the ReAct framework and multi-agent pipelines (A2A, ADK, MCP)
+- Enterprise-grade safety measures and vector database optimization
+
+**Instructors:** Hamza Farooq & Zain Hasan
+
+👉 **[Enroll Now on Maven](https://maven.com/boring-bot/advanced-llm)**
